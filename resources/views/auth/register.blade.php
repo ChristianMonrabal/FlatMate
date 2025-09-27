@@ -53,6 +53,10 @@
         </form>
 
         <p>¿Ya tienes cuenta? <a href="{{ route('login.form') }}">Inicia sesión</a></p>
+
+        <a href="{{ route('google.login') }}">
+            <button type="button">Registrate con Google</button>
+        </a>
     </div>
 </body>
 </html>

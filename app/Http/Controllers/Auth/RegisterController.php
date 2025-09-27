@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeMail;
+use App\Mail\VerifyEmailMail;
 
 class RegisterController extends Controller
 {
@@ -30,6 +33,9 @@ class RegisterController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        Mail::to($user->email)->send(new WelcomeMail($user));
+        Mail::to($user->email)->send(new VerifyEmailMail($user));
 
         Auth::login($user);
 

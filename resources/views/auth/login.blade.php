@@ -16,12 +16,12 @@
 
             <div class="form-group">
                 <label for="email">Correo electrónico</label>
-                <input type="email" name="email" id="email" value="{{ old('email') }}" required>
+                <input type="email" name="email" id="email" value="{{ old('email') }}">
             </div>
 
             <div class="form-group">
                 <label for="password">Contraseña</label>
-                <input type="password" name="password" id="password" required>
+                <input type="password" name="password" id="password">
             </div>
 
             @if ($errors->any())
@@ -38,10 +38,10 @@
         </form>
 
         <p>¿No tienes cuenta? <a href="{{ route('register.form') }}">Regístrate</a></p>
+
         <a href="{{ route('google.login') }}">
             <button type="button">Inicia sesión con Google</button>
         </a>
-
     </div>
 </body>
 </html>

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SocialAuthController;
+use App\Http\Controllers\Auth\EmailVerificationController;
+
 
 Route::get('/', function () {
     return view('index');
@@ -23,3 +25,6 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 // Rutas de autenticación con Google
 Route::get('/auth/google', [SocialAuthController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('/auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
+
+
+Route::get('/verify-email/{token}', [EmailVerificationController::class, 'verify'])->name('verify.email');
