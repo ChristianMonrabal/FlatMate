@@ -15,10 +15,28 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string',
-        ]);
+        $email = $request->input('email');
+        $password = $request->input('password');
+
+        if (empty($email) && empty($password)) {
+            return back()->withErrors([
+                'login' => 'Todos los campos son obligatorios.'
+            ])->onlyInput('email');
+        }
+
+        if (empty($email)) {
+            return back()->withErrors([
+                'login' => 'El correo es obligatorio.'
+            ])->onlyInput('email');
+        }
+
+        if (empty($password)) {
+            return back()->withErrors([
+                'login' => 'La contraseña es obligatoria.'
+            ])->onlyInput('email');
+        }
+
+        $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
@@ -26,7 +44,7 @@ class LoginController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'El correo o la contraseña son incorrectos.',
+            'login' => 'Las credenciales no son correctas.'
         ])->onlyInput('email');
     }
 
