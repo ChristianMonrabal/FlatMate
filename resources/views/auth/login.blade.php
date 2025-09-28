@@ -3,45 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Inicia sesión en FlatMate</title>
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/auth/login.css') }}">
+    <link rel="shortcut icon" href="{{ asset('img/icon-fm.png')}}" type="image/x-icon">
 </head>
 <body>
     <div class="login-container">
-        <h1>Inicia sesión</h1>
-
-        <form action="{{ route('login') }}" method="POST">
-            @csrf
-
-            <div class="form-group">
-                <label for="email">Correo electrónico</label>
-                <input type="email" name="email" id="email" value="{{ old('email') }}">
-            </div>
-
-            <div class="form-group">
-                <label for="password">Contraseña</label>
-                <input type="password" name="password" id="password">
-            </div>
-
-            @if ($errors->any())
-                <div class="errors">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+        <div class="login-left">
+            <h2>Bienvenido a FlatMate</h2>
+            <br>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Accede a nuestra plataforma gratuita</span>
                 </div>
-            @endif
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Encuentra a tu compañer@ ideal</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Explora y encuentra tu nuevo hogar fácilmente</span>
+                </div>
+            </div>
+        </div>
 
-            <button type="submit">Iniciar sesión</button>
-        </form>
+        <div class="login-right">
+            <img src="{{ asset('img/icon-fm.png')}}" class="logo">
+            <h1>Inicia sesión en FlatMate</h1>
 
-        <p>¿No tienes cuenta? <a href="{{ route('register.form') }}">Regístrate</a></p>
+            <form action="{{ route('login') }}" method="POST">
+                @csrf
 
-        <a href="{{ route('google.login') }}">
-            <button type="button">Inicia sesión con Google</button>
-        </a>
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" name="email" id="email" placeholder="Correo electrónico" value="{{ old('email') }}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" name="password" id="password" placeholder="Contraseña">
+                        <i class="fas fa-eye toggle-password show-eye"></i>
+                        <i class="fas fa-eye-slash toggle-password hide-eye" style="display: none;"></i>
+                    </div>
+                </div>
+
+                @if ($errors->any())
+                    <div class="errors">
+                        <p>{{ $errors->first() }}</p>
+                    </div>
+                @endif
+
+                <button type="submit" class="signin">Iniciar sesión</button>
+            </form>
+
+            <a href="{{ route('google.login') }}" class="google-login">
+                <i class="fab fa-google"></i>
+            </a>
+
+            <p>¿No tienes cuenta? <a href="{{ route('register.form') }}" id="register">Regístrate</a></p>
+        </div>
     </div>
+
+    <script src="{{ asset ('js/auth/login.js')}}"></script>
+
+    <script src="{{ asset('js/auth/toggle-password.js')}}"></script>
 </body>
 </html>
