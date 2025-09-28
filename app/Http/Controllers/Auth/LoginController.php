@@ -43,9 +43,16 @@ class LoginController extends Controller
             return redirect()->intended('/')->with('success', 'Has iniciado sesión correctamente.');
         }
 
+        if (Auth::attempt(
+            ['email' => $request->email, 'password' => $request->password], 
+            $request->filled('remember')
+        )) {
+            return redirect()->intended('/');
+        }
+
         return back()->withErrors([
-            'login' => 'Las credenciales no son correctas.'
-        ])->onlyInput('email');
+            'email' => 'Las credenciales no son correctas',
+        ]);
     }
 
     public function logout(Request $request)

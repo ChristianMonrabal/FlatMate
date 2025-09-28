@@ -21,7 +21,8 @@ class SocialAuthController extends Controller
 
     public function handleGoogleCallback()
     {
-        $googleUser = Socialite::driver('google')->user();
+        // $googleUser = Socialite::driver('google')->user();
+        $googleUser = Socialite::driver('google')->stateless()->user();
 
         $user = User::firstOrCreate(
             ['email' => $googleUser->getEmail()],
@@ -37,7 +38,7 @@ class SocialAuthController extends Controller
             Mail::to($user->email)->send(new VerifyEmailMail($user));
         }
 
-        Auth::login($user);
+        Auth::login($user, true);
 
         return redirect('/')->with('success', 'Has iniciado sesión con Google');
     }
