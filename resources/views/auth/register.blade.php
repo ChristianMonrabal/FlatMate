@@ -46,7 +46,7 @@
                 <div class="form-group">
                     <div class="input-wrapper">
                         <i class="fas fa-user"></i>
-                        <input type="text" name="lastname" id="lastname" placeholder="Apellido" value="{{ old('lastname') }}">
+                        <input type="text" name="lastname" id="lastname" placeholder="Apellidos" value="{{ old('lastname') }}">
                     </div>
                 </div>
 
