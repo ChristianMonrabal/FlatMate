@@ -26,5 +26,5 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/auth/google', [SocialAuthController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('/auth/google/callback', [SocialAuthController::class, 'handleGoogleCallback']);
 
-
+// Rutas de verificación de correo electrónico
 Route::get('/verify-email/{token}', [EmailVerificationController::class, 'verify'])->name('verify.email');

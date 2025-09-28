@@ -58,6 +58,13 @@
                     </div>
                 @endif
 
+                <div>
+                    <input type="checkbox" name="remember" id="remember">
+                    <label for="remember">Recuérdame</label>
+                </div>
+
+                <br>
+
                 <button type="submit" class="signin">Iniciar sesión</button>
             </form>
 
