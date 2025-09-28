@@ -53,4 +53,16 @@ class RegisterController extends Controller
 
         return redirect('/')->with('success', 'Registro completado, ¡bienvenido!');
     }
+
+    public function checkEmail(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        $exists = User::where('email', $request->email)->exists();
+
+        return response()->json(['exists' => $exists]);
+    }
+
 }
