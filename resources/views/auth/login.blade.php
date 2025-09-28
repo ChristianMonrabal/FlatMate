@@ -72,7 +72,9 @@
                 <i class="fab fa-google"></i>
             </a>
 
-            <p>¿No tienes cuenta? <a href="{{ route('register.form') }}" id="register">Regístrate</a></p>
+            <p>¿Has olvidado tu contraseña? <a href="{{ route('password.request') }}" class="link">Recupérala</a></p>
+
+            <p>¿No tienes cuenta? <a href="{{ route('register.form') }}" class="link">Regístrate</a></p>
         </div>
     </div>
 

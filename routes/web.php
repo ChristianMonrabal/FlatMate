@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\SocialAuthController;
 use App\Http\Controllers\Auth\EmailVerificationController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 
 
 Route::get('/', function () {
@@ -28,3 +30,15 @@ Route::get('/auth/google/callback', [SocialAuthController::class, 'handleGoogleC
 
 // Rutas de verificación de correo electrónico
 Route::get('/verify-email/{token}', [EmailVerificationController::class, 'verify'])->name('verify.email');
+
+// Mostrar formulario para enviar email de recuperación
+Route::get('/password/forgot', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+
+// Enviar el email con enlace de reseteo
+Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+// Mostrar formulario para restablecer contraseña (desde enlace)
+Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+
+// Guardar nueva contraseña
+Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
