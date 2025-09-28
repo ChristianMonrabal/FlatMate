@@ -46,9 +46,43 @@ document.addEventListener("DOMContentLoaded", function() {
             emailInput.style.borderColor = "red";
             createErrorMessage(emailInput, "Ingresa un correo válido");
         } else {
+            // Email válido sintácticamente, eliminamos mensaje local
             emailInput.style.borderColor = "#ccc";
             removeErrorMessage(emailInput);
+            // AJAX para comprobar si ya existe
+            checkEmailExists(email);
         }
+    }
+
+    function checkEmailExists(email) {
+        fetch("/check-email", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({ email: email })
+        })
+        .then(response => response.json())
+        .then(data => {
+            let error = emailInput.parentNode.parentNode.querySelector(".input-error");
+            if (!error) {
+                error = document.createElement("div");
+                error.className = "input-error";
+                error.style.paddingTop = "3px";
+                error.style.paddingLeft = "14px";
+                emailInput.parentNode.parentNode.appendChild(error);
+            }
+
+            if (data.exists) {
+                error.textContent = "Este email ya está en uso";
+                emailInput.style.borderColor = "red";
+            } else {
+                error.textContent = "";
+                emailInput.style.borderColor = "#ccc";
+            }
+        })
+        .catch(err => console.error(err));
     }
 
     function validatePassword() {

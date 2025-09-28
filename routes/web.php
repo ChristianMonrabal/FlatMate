@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 
 
+
 Route::get('/', function () {
     return view('index');
 });
@@ -42,3 +43,6 @@ Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showRese
 
 // Guardar nueva contraseña
 Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+// Ruta para verificar si el correo ya está registrado (AJAX)
+Route::post('/check-email', [RegisterController::class, 'checkEmail'])->name('check.email');
