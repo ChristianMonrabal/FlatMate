@@ -69,7 +69,7 @@
 
                 <div class="form-group">
                     <div class="input-wrapper">
-                        <i class="fas fa-lock"></i>
+                        <i class="fas fa-check-double"></i>
                         <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirmar contraseña">
                         <i class="fas fa-eye toggle-password show-eye"></i>
                         <i class="fas fa-eye-slash toggle-password hide-eye" style="display: none;"></i>
