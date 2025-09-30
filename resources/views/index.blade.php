@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>FlatMate</title>
-</head>
-<body>
+@extends('layouts.header')
+
+@section('content')
     <h1>Welcome to FlatMate</h1>
     <p>Your go-to platform for finding the perfect flatmate!</p>
 
@@ -23,5 +17,4 @@
             <a href="{{ route('register.form') }}">Registrarse</a>
         </p>
     @endauth
-</body>
-</html>
+@endsection

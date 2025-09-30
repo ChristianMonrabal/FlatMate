@@ -9,6 +9,15 @@
     <link rel="shortcut icon" href="{{ asset('img/icon-fm.png')}}" type="image/x-icon">
 </head>
 <body>
+    <div class="theme-toggle">
+        <i class="fas fa-sun"></i>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+        <i class="fas fa-moon"></i>
+    </div>
+
     <div class="login-container">
         <div class="login-left">
             <h2>Bienvenido a FlatMate</h2>
@@ -79,7 +88,7 @@
     </div>
 
     <script src="{{ asset ('js/auth/login.js')}}"></script>
-
     <script src="{{ asset('js/auth/toggle-password.js')}}"></script>
+    <script src="{{ asset('js/auth/dark-mode.js')}}"></script>
 </body>
 </html>

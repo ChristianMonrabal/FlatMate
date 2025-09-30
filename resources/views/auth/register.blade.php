@@ -10,6 +10,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
+    <div class="theme-toggle">
+        <i class="fas fa-sun"></i>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+        <i class="fas fa-moon"></i>
+    </div>
+    
     <div class="login-container">
         <div class="login-left">
             <h2>Únete a FlatMate</h2>
@@ -95,5 +104,6 @@
 
     <script src="{{ asset('js/auth/register.js')}}"></script>
     <script src="{{ asset('js/auth/toggle-password.js')}}"></script>
+    <script src="{{ asset('js/auth/dark-mode.js')}}"></script>
 </body>
 </html>

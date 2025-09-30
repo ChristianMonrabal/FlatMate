@@ -10,7 +10,7 @@ body {
 
 .login-container {
     width: 1200px;
-    height: 800px;
+    height: 820px;
     background: #fff;
     display: flex;
     box-shadow: 0 0 20px rgba(0,0,0,0.1);
@@ -223,6 +223,119 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
+/* Switch estilo on/off */
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    color: #333;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    border-radius: 24px;
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+input:checked + .slider {
+    background-color: #4f46e5;
+}
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background: #121212;
+    color: #eee;
+}
+
+body.dark-mode .login-container {
+    background: #1e1e1e;
+    border: 2px solid #444;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+body.dark-mode .login-left {
+    background: #2d2d6c;
+    border-right: 2px solid #444;
+}
+
+body.dark-mode .login-right h1 {
+    color: #9fa8ff;
+}
+
+body.dark-mode .input-wrapper input {
+    background: #2a2a2a;
+    border: 2px solid #555;
+    color: #fff;
+}
+
+body.dark-mode .signin {
+    background: #6d6af0;
+    border-color: #6d6af0;
+}
+body.dark-mode .signin:hover {
+    background: #5a58d1;
+    border-color: #5a58d1;
+}
+
+body.dark-mode .link {
+    color: #9fa8ff;
+}
+body.dark-mode .errors {
+    background: #ff4d4d;
+    color: #fff;
+    border: none;
+}
+
+body.dark-mode .input-wrapper i,
+body.dark-mode .login-right i,
+body.dark-mode .login-left i {
+    color: #fff;
+}
+
+body.dark-mode .theme-toggle i {
+    color: #fff;
+}
+
+body.dark-mode .features .fa-check-circle {
+    color: #facc15;
+}
+
+body.dark-mode .google-login i {
+    color: #db4437;
+}
+
+/* Responsive  */
 @media screen and (max-width: 768px) {
     .login-container {
         width: 90%;
