@@ -312,8 +312,7 @@ body.dark-mode .link {
     color: #9fa8ff;
 }
 body.dark-mode .errors {
-    background: #ff4d4d;
-    color: #fff;
+    color: red;
     border: none;
 }
 
