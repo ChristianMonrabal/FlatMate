@@ -20,6 +20,14 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('google_id')->nullable()->unique();
             $table->rememberToken();
+            $table->enum('gender', ['male','female','other'])->nullable();
+            $table->integer('age')->nullable();
+            $table->string('dni',20)->unique()->nullable();
+            $table->boolean('smoker')->default(false);
+            $table->boolean('has_children')->default(false);
+            $table->text('pets')->nullable();
+            $table->text('hobbies')->nullable();
+            $table->string('profile_photo')->nullable();
             $table->timestamps();
         });
 
