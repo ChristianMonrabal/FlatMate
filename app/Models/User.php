@@ -20,7 +20,7 @@ class User extends Authenticatable
         'birthdate',
         'gender',
         'bio',
-        'profile_picture',
+        'profile_photo',
         'is_owner',
     ];
 

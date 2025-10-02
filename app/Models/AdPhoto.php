@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class AdPhoto extends Model
 {
-    protected $fillable = [
-        'ad_id', 'photo_path'
-    ];
+    use HasFactory;
+
+    protected $fillable = ['ad_id', 'photo_path'];
 
     public function ad()
     {

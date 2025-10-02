@@ -2,37 +2,51 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Ad extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'user_id', 'title', 'address', 'postal_code',
-        'floor', 'rooms', 'bathrooms', 'square_meters',
-        'terrace', 'storage_room', 'price', 'description'
+        'user_id', 'status_id', 'title', 'description', 'address', 'city',
+        'postal_code', 'floor', 'area', 'rooms', 'bathrooms', 'terrace', 
+        'storage', 'monthly_price'
     ];
 
-    // Un anuncio pertenece a un usuario
-    public function user()
+    public function owner()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    // Un anuncio tiene muchas fotos
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
+
     public function photos()
     {
         return $this->hasMany(AdPhoto::class);
     }
 
-    // Un anuncio puede tener muchos favoritos
     public function favorites()
     {
         return $this->hasMany(Favorite::class);
     }
 
-    // Un anuncio puede recibir muchas postulaciones
     public function applications()
     {
         return $this->hasMany(Application::class);
+    }
+
+    public function chats()
+    {
+        return $this->hasMany(Chat::class);
+    }
+
+    public function contracts()
+    {
+        return $this->hasMany(Contract::class);
     }
 }

@@ -2,27 +2,32 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Chat extends Model
 {
-    protected $fillable = [
-        'user1_id', 'user2_id'
-    ];
+    use HasFactory;
+
+    protected $fillable = ['ad_id', 'user_one_id', 'user_two_id'];
+
+    public function ad()
+    {
+        return $this->belongsTo(Ad::class);
+    }
+
+    public function userOne()
+    {
+        return $this->belongsTo(User::class, 'user_one_id');
+    }
+
+    public function userTwo()
+    {
+        return $this->belongsTo(User::class, 'user_two_id');
+    }
 
     public function messages()
     {
         return $this->hasMany(Message::class);
-    }
-
-    // Participantes del chat
-    public function user1()
-    {
-        return $this->belongsTo(User::class, 'user1_id');
-    }
-
-    public function user2()
-    {
-        return $this->belongsTo(User::class, 'user2_id');
     }
 }

@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Contract extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
-        'ad_id', 'owner_id', 'tenant_id',
-        'price', 'start_date', 'end_date', 'status'
+        'ad_id', 'landlord_id', 'tenant_id', 'status_id', 
+        'start_date', 'end_date', 'monthly_rent', 'file_path'
     ];
 
     public function ad()
@@ -16,13 +19,18 @@ class Contract extends Model
         return $this->belongsTo(Ad::class);
     }
 
-    public function owner()
+    public function landlord()
     {
-        return $this->belongsTo(User::class, 'owner_id');
+        return $this->belongsTo(User::class, 'landlord_id');
     }
 
     public function tenant()
     {
         return $this->belongsTo(User::class, 'tenant_id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
     }
 }
